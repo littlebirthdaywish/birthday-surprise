@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#241526">
+  <meta name="description" content="A little birthday universe made just for Riya.">
+  <title>Riya's Birthday Universe ♡</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div class="balloon-layer" id="balloonLayer" aria-hidden="true"></div>
+  <header class="nav">
+    <a class="wordmark" href="#home"><span class="wordmark-icon">✦</span> little birthday universe</a>
+    <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false">
+      <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span id="musicText">Play piano</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero section-card" id="home">
+      <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      <div class="eyebrow"><span class="live-dot"></span> A SPECIAL DAY FOR SOMEONE SPECIAL</div>
+      <div class="cake-wrap" id="cakeWrap" role="button" tabindex="0" aria-label="Tap the cake to celebrate">
+        <div class="cake-glow"></div><span class="cake-star star-a">✧</span><span class="cake-star star-b">✦</span>
+        <div class="cake" id="cake">🎂</div>
+        <span class="cake-tip">tap the cake ✨</span>
+      </div>
+      <p class="pretitle">the world got a little brighter when</p>
+      <h1>Happy Birthday,<br><span>Riya</span><b class="heart-mark">♡</b></h1>
+      <p class="hero-text">A tiny universe of wishes, smiles, and lovely little things — made just for you.</p>
+      <button class="gradient-btn" id="celebrateBtn" type="button">Make a little magic <span>↗</span></button>
+      <div class="hero-foot"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span>♡</span></div>
+    </section>
+
+    <section class="wish-row">
+      <article class="wish-card">
+        <div class="card-symbol">✿</div><p class="eyebrow">YOUR BIRTHDAY WISH</p>
+        <h2>May life feel<br><em>like sunshine.</em></h2>
+        <p>More belly laughs. More dreams coming true. More people who see the good in you. And lots of little moments that become favourite memories.</p>
+        <div class="scribble">you deserve lovely things ♡</div>
+      </article>
+      <article class="gallery-card">
+        <div class="gallery-heading"><div><p class="eyebrow">A FEW LOVELY FRAMES</p><h2>Little moments <span>♡</span></h2></div><span class="gallery-count">01 — 03</span></div>
+        <div class="gallery-grid">
+          <button class="photo-frame photo-tall" data-photo="assets/riya-1.jpg" aria-label="View photo one"><img src="assets/riya-1.jpg" alt="Riya in a black outfit" loading="lazy"><span class="photo-caption">a little sparkle ✦</span></button>
+          <button class="photo-frame photo-top" data-photo="assets/riya-2.jpg" aria-label="View photo two"><img src="assets/riya-2.jpg" alt="Riya in a purple outfit" loading="lazy"><span class="photo-caption">pretty in purple ♡</span></button>
+          <button class="photo-frame photo-bottom" data-photo="assets/riya-3.jpg" aria-label="View photo three"><img src="assets/riya-3.jpg" alt="Riya smiling in a shawl" loading="lazy"><span class="photo-caption">soft moments ✿</span></button>
+        </div>
+        <p class="gallery-note">Three little frames, for a day worth celebrating.</p>
+      </article>
+    </section>
+
+    <section class="letter section-card" id="letter">
+      <div class="letter-top"><span class="letter-icon">✉</span><span class="eyebrow">A NOTE FROM THE HEART</span></div>
+      <h2>Dear Riya<span>,</span></h2>
+      <div class="letter-body">
+        <p>Some people make ordinary moments feel a little brighter without even realising it.</p>
+        <p>A random conversation, a silly laugh, or a tiny moment can turn into a memory that makes you smile later.</p>
+        <p>I hope this new year of your life brings you gentle days, big reasons to be proud of yourself, and happiness that finds you in the smallest things.</p>
+        <p class="hint-line">And maybe you don't always notice it, but you have a way of making certain moments feel a little more special. 🤍</p>
+      </div>
+      <div class="letter-end">Keep being wonderfully you <span>♡</span></div>
+      <div class="letter-doodle">✧　♡　✧</div>
+    </section>
+
+    <section class="finale">
+      <div class="constellation">✦　·　✧　♡　✧　·　✦</div>
+      <p class="eyebrow">YOUR WISH IS WAITING</p>
+      <h2>One more wish.<br><em>Just for you.</em></h2>
+      <p>Close your eyes for a second, make a wish, and let the new chapter begin. 🎀</p>
+      <button class="gradient-btn" id="wishBtn" type="button">Send wishes into the sky <span>✧</span></button>
+      <p class="signature">a little birthday magic, made by <strong>Al Lareb</strong></p>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true"><button id="closeLightbox" aria-label="Close photo">×</button><img id="lightboxImg" alt="Riya photo enlarged"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
