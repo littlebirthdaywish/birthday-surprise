@@ -1,23 +1,348 @@
-const balloonLayer=document.getElementById('balloonLayer');
-const music=document.getElementById('birthdayMusic');
-const musicToggle=document.getElementById('musicToggle');
-const musicText=document.getElementById('musicText');
-const musicHint=document.getElementById('musicHint');
-const toast=document.getElementById('toast');
-let toastTimer;
-const balloonColors=['#f28bb9','#d5a8ff','#ffc7dc','#a9c7ff','#ffe1a8','#b5e6d4'];
-function addBalloon(initial=false){const b=document.createElement('span');b.className='balloon';const c=balloonColors[Math.floor(Math.random()*balloonColors.length)];b.style.setProperty('--balloon-color',c);b.style.background=`radial-gradient(circle at 30% 25%,#ffffffd9,${c} 43%,${c})`;b.style.left=`${Math.random()*100}%`;b.style.width=`${25+Math.random()*20}px`;b.style.height=`${35+Math.random()*25}px`;b.style.setProperty('--drift',`${Math.round(Math.random()*150-75)}px`);b.style.setProperty('--tilt',`${Math.round(Math.random()*35-17)}deg`);b.style.animationDuration=`${12+Math.random()*12}s`;if(initial)b.style.animationDelay=`${-Math.random()*16}s`;balloonLayer.appendChild(b);setTimeout(()=>b.remove(),27000)}
-for(let i=0;i<16;i++)addBalloon(true);setInterval(()=>addBalloon(),850);
-function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2800)}
-async function startMusic(){try{music.volume=.48;await music.play();musicToggle.classList.add('playing');musicToggle.setAttribute('aria-pressed','true');musicToggle.setAttribute('aria-label','Pause birthday music');musicText.textContent='Music playing';musicHint.classList.remove('show');return true}catch(e){musicHint.classList.add('show');return false}}
-function pauseMusic(){music.pause();musicToggle.classList.remove('playing');musicToggle.setAttribute('aria-pressed','false');musicToggle.setAttribute('aria-label','Play birthday music');musicText.textContent='Play music'}
-musicToggle.addEventListener('click',async()=>{if(!music.paused)pauseMusic();else await startMusic()});document.getElementById('startMusic').addEventListener('click',startMusic);
-// Try autoplay immediately. If the browser blocks sound, the first touch/click starts it.
-window.addEventListener('load',()=>{startMusic()});
-let firstInteractionHandled=false;function startOnFirstInteraction(){if(firstInteractionHandled)return;firstInteractionHandled=true;if(music.paused)startMusic();document.removeEventListener('pointerdown',startOnFirstInteraction);document.removeEventListener('keydown',startOnFirstInteraction)}document.addEventListener('pointerdown',startOnFirstInteraction,{passive:true});document.addEventListener('keydown',startOnFirstInteraction);
-function confettiBurst(amount=100){const colors=['#ff9fc9','#f9d5e7','#d3b7ff','#fff0c4','#b8e8d7','#ffffff'];for(let i=0;i<amount;i++){const p=document.createElement('span');p.className='confetti';p.style.left=`${Math.random()*100}%`;p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.width=`${5+Math.random()*7}px`;p.style.height=`${8+Math.random()*10}px`;p.style.borderRadius=Math.random()>.5?'50%':'2px';p.style.setProperty('--drift',`${Math.round(Math.random()*220-110)}px`);p.style.animationDuration=`${2.5+Math.random()*3}s`;document.body.appendChild(p);setTimeout(()=>p.remove(),6000)}}
-function cakeMagic(){confettiBurst(70);const cake=document.getElementById('cake');cake.textContent='🧁';showToast('A little extra sweetness for your day, Riya! ♡');setTimeout(()=>cake.textContent='🎂',1600)}
-document.getElementById('cake').addEventListener('click',cakeMagic);
-document.getElementById('celebrateBtn').addEventListener('click',()=>{confettiBurst(110);document.getElementById('wishes').scrollIntoView({behavior:'smooth'});showToast('Your little birthday magic is here ✨')});
-document.getElementById('wishBtn').addEventListener('click',()=>{confettiBurst(160);for(let i=0;i<12;i++)setTimeout(()=>addBalloon(),i*130);showToast('A wish full of lovely things, just for you 💗')});
-const lightbox=document.getElementById('lightbox'),lightboxImg=document.getElementById('lightboxImg');document.querySelectorAll('[data-photo]').forEach(btn=>{const img=btn.querySelector('img');img.addEventListener('error',()=>{img.alt='Photo file missing — upload the assets folder to GitHub';btn.classList.add('photo-missing')});btn.addEventListener('click',()=>{lightboxImg.src=btn.dataset.photo;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false')})});function closeLightbox(){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');lightboxImg.src=''}document.getElementById('closeLightbox').addEventListener('click',closeLightbox);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+/* ==========================================
+   RIYA'S BIRTHDAY WEBSITE — COMPLETE JS
+   Music • Cake • Gallery • Confetti • Hearts
+   No timer
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const $ = (selector) => document.querySelector(selector);
+  const $$ = (selector) => document.querySelectorAll(selector);
+
+  const music = $("#birthdayMusic");
+  const musicToggle = $("#musicToggle");
+  const musicText = $("#musicText");
+  const musicHint = $("#musicHint");
+  const startMusic = $("#startMusic");
+
+  const cake = $("#cake");
+  const celebrateBtn = $("#celebrateBtn");
+  const wishBtn = $("#wishBtn");
+
+  const lightbox = $("#lightbox");
+  const lightboxImg = $("#lightboxImg");
+  const closeLightbox = $("#closeLightbox");
+
+  const toast = $("#toast");
+  const balloonLayer = $("#balloonLayer");
+
+  let toastTimeout;
+  let musicPlaying = false;
+
+  // ------------------------------------------
+  // Toast notification
+  // ------------------------------------------
+
+  function showToast(message) {
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimeout);
+
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2800);
+  }
+
+  // ------------------------------------------
+  // Music controls
+  // Mobile browsers require a user interaction
+  // before audio can start.
+  // ------------------------------------------
+
+  function updateMusicUI(playing) {
+    musicPlaying = playing;
+
+    if (musicToggle) {
+      musicToggle.setAttribute("aria-pressed", String(playing));
+      musicToggle.setAttribute(
+        "aria-label",
+        playing ? "Pause birthday music" : "Play birthday music"
+      );
+    }
+
+    if (musicText) {
+      musicText.textContent = playing ? "Music on" : "Music off";
+    }
+
+    if (musicHint) {
+      musicHint.style.display = playing ? "none" : "flex";
+    }
+  }
+
+  async function playMusic() {
+    if (!music) {
+      showToast("Music file nahi mili — check assets folder ♫");
+      return;
+    }
+
+    try {
+      await music.play();
+      updateMusicUI(true);
+      showToast("Birthday vibes are on ♫");
+    } catch (error) {
+      updateMusicUI(false);
+      showToast("Music play karne ke liye dobara tap karo ♡");
+    }
+  }
+
+  function pauseMusic() {
+    if (music) music.pause();
+    updateMusicUI(false);
+  }
+
+  if (musicToggle) {
+    musicToggle.addEventListener("click", () => {
+      if (musicPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    });
+  }
+
+  if (startMusic) {
+    startMusic.addEventListener("click", playMusic);
+  }
+
+  if (music) {
+    music.addEventListener("play", () => updateMusicUI(true));
+    music.addEventListener("pause", () => updateMusicUI(false));
+
+    music.addEventListener("error", () => {
+      updateMusicUI(false);
+    });
+  }
+
+  // ------------------------------------------
+  // Floating balloons and hearts
+  // ------------------------------------------
+
+  if (balloonLayer) {
+    const decorations = ["♡", "♥", "✦", "✧", "🎈"];
+
+    for (let i = 0; i < 14; i++) {
+      const item = document.createElement("span");
+
+      item.className = "floating-heart";
+      item.textContent = decorations[i % decorations.length];
+      item.style.left = Math.random() * 96 + "%";
+      item.style.animationDelay = Math.random() * 14 + "s";
+      item.style.animationDuration = 12 + Math.random() * 10 + "s";
+      item.style.fontSize = 14 + Math.random() * 13 + "px";
+
+      balloonLayer.appendChild(item);
+    }
+  }
+
+  // ------------------------------------------
+  // Confetti effect
+  // ------------------------------------------
+
+  function launchConfetti(amount = 90) {
+    const colors = [
+      "#f27ca7",
+      "#ffb6cc",
+      "#d9baff",
+      "#f7d58b",
+      "#ffffff",
+      "#e98eb2"
+    ];
+
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < amount; i++) {
+      const piece = document.createElement("span");
+
+      piece.style.position = "fixed";
+      piece.style.left = Math.random() * 100 + "vw";
+      piece.style.top = "-20px";
+      piece.style.width = 6 + Math.random() * 6 + "px";
+      piece.style.height = 8 + Math.random() * 8 + "px";
+      piece.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+      piece.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+      piece.style.pointerEvents = "none";
+      piece.style.zIndex = "9999";
+      piece.style.opacity = "1";
+
+      document.body.appendChild(piece);
+
+      const distance = window.innerHeight + 80;
+      const duration = 2200 + Math.random() * 2400;
+      const drift = (Math.random() - 0.5) * 240;
+      const rotation = Math.random() * 900;
+
+      const animation = piece.animate(
+        [
+          {
+            transform: "translate3d(0, 0, 0) rotate(0deg)",
+            opacity: 1
+          },
+          {
+            transform:
+              `translate3d(${drift}px, ${distance}px, 0) rotate(${rotation}deg)`,
+            opacity: 0.1
+          }
+        ],
+        {
+          duration,
+          easing: "cubic-bezier(.25,.46,.45,.94)"
+        }
+      );
+
+      animation.onfinish = () => piece.remove();
+    }
+  }
+
+  // ------------------------------------------
+  // Cake click
+  // ------------------------------------------
+
+  if (cake) {
+    cake.addEventListener("click", () => {
+      cake.animate(
+        [
+          { transform: "scale(1) rotate(0deg)" },
+          { transform: "scale(1.2) rotate(-7deg)" },
+          { transform: "scale(1.08) rotate(7deg)" },
+          { transform: "scale(1) rotate(0deg)" }
+        ],
+        {
+          duration: 550,
+          easing: "ease-out"
+        }
+      );
+
+      launchConfetti(35);
+      showToast("Make a wish, Riya! 🎂♡");
+    });
+  }
+
+  // ------------------------------------------
+  // Main celebration button
+  // ------------------------------------------
+
+  if (celebrateBtn) {
+    celebrateBtn.addEventListener("click", () => {
+      launchConfetti(100);
+      showToast("This little surprise is made for you, Riya! ♡");
+
+      const wishes = $("#wishes");
+
+      if (wishes) {
+        wishes.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  }
+
+  // ------------------------------------------
+  // Final wish button
+  // ------------------------------------------
+
+  if (wishBtn) {
+    wishBtn.addEventListener("click", () => {
+      launchConfetti(130);
+      showToast("May all your wishes come true, Riya! ✨♡");
+
+      wishBtn.animate(
+        [
+          { transform: "scale(1)" },
+          { transform: "scale(1.06)" },
+          { transform: "scale(1)" }
+        ],
+        { duration: 350 }
+      );
+    });
+  }
+
+  // ------------------------------------------
+  // Photo gallery lightbox
+  // ------------------------------------------
+
+  function openLightbox(photoSrc, altText) {
+    if (!lightbox || !lightboxImg) return;
+
+    lightboxImg.src = photoSrc;
+    lightboxImg.alt = altText || "Riya photo enlarged";
+    lightbox.style.display = "flex";
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+
+    if (closeLightbox) closeLightbox.focus();
+  }
+
+  function hideLightbox() {
+    if (!lightbox || !lightboxImg) return;
+
+    lightbox.classList.remove("active");
+    lightbox.style.display = "none";
+    lightbox.setAttribute("aria-hidden", "true");
+
+    lightboxImg.src = "";
+    document.body.style.overflow = "";
+  }
+
+  $$(".photo-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const image = card.querySelector("img");
+      const source =
+        card.getAttribute("data-photo") ||
+        (image ? image.src : "");
+
+      const alt = image ? image.alt : "Riya photo enlarged";
+
+      if (source) openLightbox(source, alt);
+    });
+  });
+
+  if (closeLightbox) {
+    closeLightbox.addEventListener("click", hideLightbox);
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        hideLightbox();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      hideLightbox();
+    }
+  });
+
+  // ------------------------------------------
+  // Keyboard accessibility for interactive cake
+  // ------------------------------------------
+
+  if (cake) {
+    cake.setAttribute("role", "button");
+    cake.setAttribute("tabindex", "0");
+    cake.setAttribute("aria-label", "Tap the birthday cake to make a wish");
+
+    cake.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        cake.click();
+      }
+    });
+  }
+
+  // ------------------------------------------
+  // Initial state
+  // ------------------------------------------
+
+  updateMusicUI(false);
+
+  console.log("Riya's birthday website is ready ♡");
+});
