@@ -9,20 +9,29 @@
   <title>For Riya ♡ — Birthday Surprise</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <!-- Background -->
   <div class="glow glow-one"></div>
   <div class="glow glow-two"></div>
   <div class="balloon-layer" id="balloonLayer" aria-hidden="true"></div>
 
+  <!-- Birthday Music -->
   <audio id="birthdayMusic" src="assets/birthday-music.m4a" loop preload="auto"></audio>
 
+  <!-- Navigation -->
   <header class="topbar">
-    <a class="brand" href="#home"><span>♡</span> a little something for you</a>
-    <button class="music-button" id="musicToggle" aria-label="Play birthday music" aria-pressed="false">
+    <a class="brand" href="#home">
+      <span>♡</span> a little something for you
+    </a>
+
+    <button class="music-button" id="musicToggle" type="button"
+      aria-label="Play birthday music" aria-pressed="false">
       <span class="music-icon">♫</span>
       <span id="musicText">Music on</span>
       <span class="bars"><i></i><i></i><i></i></span>
@@ -35,18 +44,7 @@
   </div>
 
   <main>
-    <!-- TEST COUNTDOWN -->
-    <section class="section-wrap" id="testCountdown" style="text-align:center;padding-top:35px;padding-bottom:20px;">
-      <p class="eyebrow">A LITTLE SURPRISE IS COMING</p>
-      <h2 style="font-family:'Playfair Display',serif;">Something special for Riya <em>♡</em></h2>
-      <div id="testTimer" role="timer" aria-live="off"
-        style="font-size:clamp(42px,10vw,64px);font-weight:700;letter-spacing:4px;color:#e75480;margin:15px 0;">
-        01:00
-      </div>
-      <p id="testTimerMessage">Your surprise begins in...</p>
-    </section>
-
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
       <div class="tiny-label">
         <span class="sparkle">✦</span>
@@ -63,8 +61,14 @@
         <span class="tap-cake">tap the cake &amp; make a wish</span>
       </div>
 
-      <p class="script-line">for someone who makes life a little brighter ♡</p>
-      <h1>Happy Birthday,<br><em>Riya</em><span class="title-heart">♡</span></h1>
+      <p class="script-line">
+        for someone who makes life a little brighter ♡
+      </p>
+
+      <h1>
+        Happy Birthday,<br>
+        <em>Riya</em><span class="title-heart">♡</span>
+      </h1>
 
       <p class="hero-copy">
         It's your day, Riya! 🎀 Hope it brings you lots of smiles,
@@ -72,7 +76,7 @@
         You deserve the best, today and always. ✨
       </p>
 
-      <button class="primary-button" id="celebrateBtn">
+      <button class="primary-button" id="celebrateBtn" type="button">
         Open your birthday surprise <span>↗</span>
       </button>
 
@@ -85,30 +89,44 @@
     <section class="wishes section-wrap" id="wishes">
       <div class="section-heading">
         <p class="eyebrow">A FEW THINGS I WISH FOR YOU</p>
-        <h2>Hope life gives you<br><em>more reasons to smile.</em></h2>
+        <h2>
+          Hope life gives you<br>
+          <em>more reasons to smile.</em>
+        </h2>
       </div>
 
       <div class="wish-grid">
         <article class="wish-tile">
           <span class="tile-icon">☼</span>
           <h3>Good vibes only</h3>
-          <p>May your days be full of laughter, peace and little moments that make you genuinely happy.</p>
+          <p>
+            May your days be full of laughter, peace and little moments
+            that make you genuinely happy.
+          </p>
         </article>
+
         <article class="wish-tile">
           <span class="tile-icon">✿</span>
           <h3>Dream big</h3>
-          <p>May your hard work pay off and all those little dreams slowly turn into beautiful memories.</p>
+          <p>
+            May your hard work pay off and all those little dreams
+            slowly turn into beautiful memories.
+          </p>
         </article>
+
         <article class="wish-tile">
           <span class="tile-icon">♡</span>
           <h3>Stay amazing</h3>
-          <p>Never change the lovely little things that make you you. The world needs more of that energy.</p>
+          <p>
+            Never change the lovely little things that make you you.
+            The world needs more of that energy.
+          </p>
         </article>
       </div>
     </section>
 
     <!-- PHOTO GALLERY -->
-    <section class="memories section-wrap">
+    <section class="memories section-wrap" id="memories">
       <div class="section-heading gallery-title">
         <div>
           <p class="eyebrow">A LITTLE PHOTO MOMENT</p>
@@ -118,21 +136,37 @@
       </div>
 
       <div class="gallery-grid">
-        <button class="photo-card photo-one" data-photo="assets/riya-1.jpg" aria-label="Open first Riya photo">
-          <img src="assets/riya-1.jpg" alt="Riya photo one" loading="eager">
+        <button class="photo-card photo-one"
+          data-photo="assets/riya-1.jpg"
+          type="button"
+          aria-label="Open first Riya photo">
+          <img src="assets/riya-1.jpg"
+            alt="Riya photo one" loading="eager">
           <span class="photo-note">a little sparkle ✦</span>
         </button>
-        <button class="photo-card photo-two" data-photo="assets/riya-2.jpg" aria-label="Open second Riya photo">
-          <img src="assets/riya-2.jpg" alt="Riya photo two" loading="eager">
+
+        <button class="photo-card photo-two"
+          data-photo="assets/riya-2.jpg"
+          type="button"
+          aria-label="Open second Riya photo">
+          <img src="assets/riya-2.jpg"
+            alt="Riya photo two" loading="eager">
           <span class="photo-note">pretty little moment ♡</span>
         </button>
-        <button class="photo-card photo-three" data-photo="assets/riya-3.jpg" aria-label="Open third Riya photo">
-          <img src="assets/riya-3.jpg" alt="Riya photo three" loading="eager">
+
+        <button class="photo-card photo-three"
+          data-photo="assets/riya-3.jpg"
+          type="button"
+          aria-label="Open third Riya photo">
+          <img src="assets/riya-3.jpg"
+            alt="Riya photo three" loading="eager">
           <span class="photo-note">just being you ✿</span>
         </button>
       </div>
 
-      <p class="gallery-foot">A few memories for your special day. Tap a photo to zoom in. ✨</p>
+      <p class="gallery-foot">
+        A few memories for your special day. Tap a photo to zoom in. ✨
+      </p>
     </section>
 
     <!-- PERSONAL LETTER -->
@@ -140,64 +174,96 @@
       <article class="letter-card">
         <div class="letter-decoration">✧　♡　✧</div>
         <p class="eyebrow">A LITTLE NOTE FOR YOU</p>
+
         <h2>Dear Riya<span>,</span></h2>
-        <p>Happy Birthday! I hope this year brings you happiness, success, peace and so many beautiful memories.</p>
-        <p>Honestly, talking to you, laughing at random things and sharing little moments can make an ordinary day feel pretty special.</p>
-        <p>I hope you always stay happy, keep smiling and get all the good things you deserve. Never stop being the person you are.</p>
-        <p class="soft-hint">And maybe, without even knowing it, you make someone's day better just by being you. 🤍</p>
-        <div class="letter-signoff">Stay happy, stay you <span>♡</span></div>
+
+        <p>
+          Happy Birthday! I hope this year brings you happiness,
+          success, peace and so many beautiful memories.
+        </p>
+
+        <p>
+          Honestly, talking to you, laughing at random things and
+          sharing little moments can make an ordinary day feel
+          pretty special.
+        </p>
+
+        <p>
+          I hope you always stay happy, keep smiling and get all
+          the good things you deserve. Never stop being the person
+          you are.
+        </p>
+
+        <p class="soft-hint">
+          And maybe, without even knowing it, you make someone's
+          day better just by being you. 🤍
+        </p>
+
+        <div class="letter-signoff">
+          Stay happy, stay you <span>♡</span>
+        </div>
       </article>
     </section>
 
     <!-- FINAL BIRTHDAY WISH -->
-    <section class="finale section-wrap">
+    <section class="finale section-wrap" id="finale">
       <div class="star-line">✧ · ˚　♡　˚ · ✧</div>
+
       <p class="eyebrow">ONE LAST THING</p>
-      <h2>Make a wish.<br><em>It's your day. ✨</em></h2>
-      <p>Here's to more laughter, new memories and a year that treats you beautifully. Happy Birthday once again, Riya! 🎂</p>
-      <button class="primary-button" id="wishBtn">Make a little wish <span>✦</span></button>
-      <div class="signature">made with a little extra care by <strong>Al Lareb</strong></div>
+
+      <h2>
+        Make a wish.<br>
+        <em>It's your day. ✨</em>
+      </h2>
+
+      <p>
+        Here's to more laughter, new memories and a year that
+        treats you beautifully. Happy Birthday once again, Riya! 🎂
+      </p>
+
+      <button class="primary-button" id="wishBtn" type="button">
+        Make a little wish <span>✦</span>
+      </button>
+
+      <div class="signature">
+        made with a little extra care by <strong>Al Lareb</strong>
+      </div>
     </section>
   </main>
 
   <!-- PHOTO LIGHTBOX -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button id="closeLightbox" aria-label="Close photo">×</button>
+    <button id="closeLightbox" type="button" aria-label="Close photo">×</button>
     <img id="lightboxImg" alt="Riya photo enlarged">
   </div>
 
+  <!-- Toast notifications -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- ONE-MINUTE TEST TIMER -->
+  <!-- Existing website interactions -->
+  <script src="script.js"></script>
+
+  <!-- Floating hearts decoration -->
   <script>
     (function () {
-      let seconds = 60;
-      const timer = document.getElementById("testTimer");
-      const message = document.getElementById("testTimerMessage");
+      const layer = document.getElementById("balloonLayer");
+      if (!layer) return;
 
-      function updateTimer() {
-        const mins = Math.floor(seconds / 60);
-        const secs = seconds % 60;
+      const symbols = ["♡", "♥", "✦", "✧"];
 
-        timer.textContent =
-          String(mins).padStart(2, "0") + ":" +
-          String(secs).padStart(2, "0");
+      for (let i = 0; i < 12; i++) {
+        const heart = document.createElement("span");
 
-        if (seconds <= 0) {
-          clearInterval(interval);
-          timer.textContent = "🎉";
-          message.textContent = "Surprise time! Happy Birthday, Riya! ❤️";
-          return;
-        }
+        heart.className = "floating-heart";
+        heart.textContent = symbols[i % symbols.length];
+        heart.style.left = (Math.random() * 96) + "%";
+        heart.style.animationDelay = (Math.random() * 12) + "s";
+        heart.style.animationDuration = (12 + Math.random() * 8) + "s";
+        heart.style.fontSize = (14 + Math.random() * 13) + "px";
 
-        seconds--;
+        layer.appendChild(heart);
       }
-
-      updateTimer();
-      const interval = setInterval(updateTimer, 1000);
     })();
   </script>
-
-  <script src="script.js"></script>
 </body>
 </html>
