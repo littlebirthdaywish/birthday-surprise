@@ -1,67 +1,211 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#fff0f6">
-  <meta name="description" content="A little birthday surprise made just for Riya.">
+  <meta name="description" content="A little birthday surprise for Riya, made with good vibes and a tiny hint of affection.">
   <title>For Riya ♡ — Birthday Surprise</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="glow glow-one"></div><div class="glow glow-two"></div>
+  <div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
+
   <div class="balloon-layer" id="balloonLayer" aria-hidden="true"></div>
-  <audio id="birthdayMusic" src="assets/birthday-music.m4a" loop preload="auto" autoplay></audio>
+
+  <audio id="birthdayMusic" src="assets/birthday-music.m4a" loop preload="auto"></audio>
+
   <header class="topbar">
     <a class="brand" href="#home"><span>♡</span> a little something for you</a>
-    <button class="music-button" id="musicToggle" aria-label="Play birthday music" aria-pressed="false"><span class="music-icon">♫</span><span id="musicText">Music on</span><span class="bars"><i></i><i></i><i></i></span></button>
+
+    <button class="music-button" id="musicToggle" aria-label="Play birthday music" aria-pressed="false">
+      <span class="music-icon">♫</span>
+      <span id="musicText">Music on</span>
+      <span class="bars"><i></i><i></i><i></i></span>
+    </button>
   </header>
-  <div class="music-hint" id="musicHint">♫ <span>Tap anywhere to start the birthday music</span> <button id="startMusic" type="button">Play ♡</button></div>
+
+  <div class="music-hint" id="musicHint">
+    ♫ <span>Tap to play the birthday vibes</span>
+    <button id="startMusic" type="button">Play ♡</button>
+  </div>
+
   <main>
+    <!-- HERO -->
     <section class="hero" id="home">
-      <div class="tiny-label"><span class="sparkle">✦</span> TODAY IS ALL ABOUT YOU <span class="sparkle">✦</span></div>
-      <div class="hero-art" aria-label="Birthday cake"><div class="halo"></div><span class="orbit-heart h1">♡</span><span class="orbit-heart h2">✧</span><span class="orbit-heart h3">✦</span><div class="cake-emoji" id="cake">🎂</div><span class="tap-cake">make a wish · tap the cake</span></div>
-      <p class="script-line">for the girl who makes little moments brighter</p>
-      <h1>Happy Birthday,<br><em>Riya</em><span class="title-heart">♡</span></h1>
-      <p class="hero-copy">Today deserves a little extra sparkle — just like you. So here's a tiny corner of the internet filled with wishes, memories, and a bit of magic. 🎀</p>
-      <button class="primary-button" id="celebrateBtn">Open your little surprise <span>↗</span></button>
-      <div class="scroll-cue"><span></span> SCROLL DOWN, BIRTHDAY GIRL <span>♡</span></div>
+      <div class="tiny-label">
+        <span class="sparkle">✦</span>
+        YOUR DAY, YOUR VIBE
+        <span class="sparkle">✦</span>
+      </div>
+
+      <div class="hero-art" aria-label="Birthday cake">
+        <div class="halo"></div>
+        <span class="orbit-heart h1">♡</span>
+        <span class="orbit-heart h2">✧</span>
+        <span class="orbit-heart h3">✦</span>
+        <div class="cake-emoji" id="cake">🎂</div>
+        <span class="tap-cake">tap the cake &amp; make a wish</span>
+      </div>
+
+      <p class="script-line">for someone who makes life a little brighter ♡</p>
+
+      <h1>
+        Happy Birthday,<br>
+        <em>Riya</em><span class="title-heart">♡</span>
+      </h1>
+
+      <p class="hero-copy">
+        It's your day, Riya! 🎀 Hope it brings you lots of smiles,
+        good vibes, sweet memories and everything that makes you happy.
+        You deserve the best, today and always. ✨
+      </p>
+
+      <button class="primary-button" id="celebrateBtn">
+        Open your birthday surprise <span>↗</span>
+      </button>
+
+      <div class="scroll-cue">
+        <span></span> KEEP SCROLLING, BIRTHDAY GIRL <span>♡</span>
+      </div>
     </section>
 
+    <!-- BIRTHDAY WISHES -->
     <section class="wishes section-wrap" id="wishes">
-      <div class="section-heading"><p class="eyebrow">A WISH, FROM ME TO YOU</p><h2>May your year feel<br><em>like a soft kind of magic.</em></h2></div>
+      <div class="section-heading">
+        <p class="eyebrow">A FEW THINGS I WISH FOR YOU</p>
+        <h2>Hope life gives you<br><em>more reasons to smile.</em></h2>
+      </div>
+
       <div class="wish-grid">
-        <article class="wish-tile"><span class="tile-icon">☼</span><h3>More happy days</h3><p>May you find a reason to smile even on the most ordinary days.</p></article>
-        <article class="wish-tile"><span class="tile-icon">✿</span><h3>Dreams that bloom</h3><p>May the things you quietly wish for find their way to you.</p></article>
-        <article class="wish-tile"><span class="tile-icon">♡</span><h3>People who care</h3><p>May you always feel appreciated, understood, and genuinely special.</p></article>
+        <article class="wish-tile">
+          <span class="tile-icon">☼</span>
+          <h3>Good vibes only</h3>
+          <p>May your days be full of laughter, peace and little moments that make you genuinely happy.</p>
+        </article>
+
+        <article class="wish-tile">
+          <span class="tile-icon">✿</span>
+          <h3>Dream big</h3>
+          <p>May your hard work pay off and all those little dreams slowly turn into beautiful memories.</p>
+        </article>
+
+        <article class="wish-tile">
+          <span class="tile-icon">♡</span>
+          <h3>Stay amazing</h3>
+          <p>Never change the lovely little things that make you you. The world needs more of that energy.</p>
+        </article>
       </div>
     </section>
 
+    <!-- PHOTO GALLERY -->
     <section class="memories section-wrap">
-      <div class="section-heading gallery-title"><div><p class="eyebrow">LITTLE MOMENTS, BIG SMILES</p><h2>A few frames of <em>you.</em></h2></div><span class="gallery-stamp">RIYA'S<br>DAY ♡</span></div>
-      <div class="gallery-grid">
-        <button class="photo-card photo-one" data-photo="assets/riya-1.jpg" aria-label="Open first Riya photo"><img src="assets/riya-1.jpg" alt="Riya in a black patterned dress" loading="eager"><span class="photo-note">a little sparkle ✦</span></button>
-        <button class="photo-card photo-two" data-photo="assets/riya-2.jpg" aria-label="Open second Riya photo"><img src="assets/riya-2.jpg" alt="Riya in a purple outfit" loading="eager"><span class="photo-note">pretty in purple ♡</span></button>
-        <button class="photo-card photo-three" data-photo="assets/riya-3.jpg" aria-label="Open third Riya photo"><img src="assets/riya-3.jpg" alt="Riya in a light shawl" loading="eager"><span class="photo-note">just being you ✿</span></button>
+      <div class="section-heading gallery-title">
+        <div>
+          <p class="eyebrow">A LITTLE PHOTO MOMENT</p>
+          <h2>Just a few frames of <em>you.</em></h2>
+        </div>
+        <span class="gallery-stamp">RIYA'S<br>DAY ♡</span>
       </div>
-      <p class="gallery-foot">Some moments deserve their own little frame. Tap any photo to see it closer.</p>
+
+      <div class="gallery-grid">
+        <button class="photo-card photo-one" data-photo="assets/riya-1.jpg" aria-label="Open first Riya photo">
+          <img src="assets/riya-1.jpg" alt="Riya photo one" loading="eager">
+          <span class="photo-note">a little sparkle ✦</span>
+        </button>
+
+        <button class="photo-card photo-two" data-photo="assets/riya-2.jpg" aria-label="Open second Riya photo">
+          <img src="assets/riya-2.jpg" alt="Riya photo two" loading="eager">
+          <span class="photo-note">pretty little moment ♡</span>
+        </button>
+
+        <button class="photo-card photo-three" data-photo="assets/riya-3.jpg" aria-label="Open third Riya photo">
+          <img src="assets/riya-3.jpg" alt="Riya photo three" loading="eager">
+          <span class="photo-note">just being you ✿</span>
+        </button>
+      </div>
+
+      <p class="gallery-foot">
+        A few memories for your special day. Tap a photo to zoom in. ✨
+      </p>
     </section>
 
+    <!-- PERSONAL LETTER -->
     <section class="letter-section section-wrap" id="letter">
-      <article class="letter-card"><div class="letter-decoration">✧　♡　✧</div><p class="eyebrow">A LITTLE NOTE, JUST FOR YOU</p><h2>Dear Riya<span>,</span></h2>
-        <p>I hope this birthday brings you the kind of happiness that stays long after the candles are gone.</p>
-        <p>It's funny how some people can make a normal day feel a little less normal — a random conversation, a silly laugh, or just seeing their name pop up can turn a small moment into a favourite one.</p>
-        <p>So, in your new chapter, I hope you get all the love, peace, laughter, and beautiful surprises you deserve. Never forget how much light you bring into the little corners of life around you.</p>
-        <p class="soft-hint">And if today feels a little more special than usual… maybe some people are simply impossible not to smile about. 🤍</p>
-        <div class="letter-signoff">Keep being your lovely self <span>♡</span></div>
+      <article class="letter-card">
+        <div class="letter-decoration">✧　♡　✧</div>
+        <p class="eyebrow">A LITTLE NOTE FOR YOU</p>
+
+        <h2>Dear Riya<span>,</span></h2>
+
+        <p>
+          Happy Birthday! I hope this year brings you happiness,
+          success, peace and so many beautiful memories.
+        </p>
+
+        <p>
+          Honestly, talking to you, laughing at random things and
+          sharing little moments can make an ordinary day feel
+          pretty special.
+        </p>
+
+        <p>
+          I hope you always stay happy, keep smiling and get all
+          the good things you deserve. Never stop being the person
+          you are.
+        </p>
+
+        <p class="soft-hint">
+          And maybe, without even knowing it, you make someone's
+          day better just by being you. 🤍
+        </p>
+
+        <div class="letter-signoff">
+          Stay happy, stay you <span>♡</span>
+        </div>
       </article>
     </section>
 
-    <section class="finale section-wrap"><div class="star-line">✧ · ˚　♡　˚ · ✧</div><p class="eyebrow">ONE LAST LITTLE SURPRISE</p><h2>Close your eyes.<br><em>Make a wish.</em></h2><p>May this next trip around the sun be kinder, brighter, and full of moments you'll want to keep forever.</p><button class="primary-button" id="wishBtn">Send your wish to the stars <span>✦</span></button><div class="signature">made with a little extra care by <strong>Al Lareb</strong></div></section>
+    <!-- FINAL BIRTHDAY WISH -->
+    <section class="finale section-wrap">
+      <div class="star-line">✧ · ˚　♡　˚ · ✧</div>
+
+      <p class="eyebrow">ONE LAST THING</p>
+
+      <h2>
+        Make a wish.<br>
+        <em>It's your day. ✨</em>
+      </h2>
+
+      <p>
+        Here's to more laughter, new memories and a year that
+        treats you beautifully. Happy Birthday once again, Riya! 🎂
+      </p>
+
+      <button class="primary-button" id="wishBtn">
+        Make a little wish <span>✦</span>
+      </button>
+
+      <div class="signature">
+        made with a little extra care by <strong>Al Lareb</strong>
+      </div>
+    </section>
   </main>
-  <div class="lightbox" id="lightbox" aria-hidden="true"><button id="closeLightbox" aria-label="Close photo">×</button><img id="lightboxImg" alt="Riya photo enlarged"></div>
+
+  <!-- PHOTO LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button id="closeLightbox" aria-label="Close photo">×</button>
+    <img id="lightboxImg" alt="Riya photo enlarged">
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
